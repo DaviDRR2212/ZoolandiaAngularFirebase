@@ -4,5 +4,18 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<app-lista-animales></app-lista-animales>
+<div *ngIf="auth.user$ | async; then autenticado else noautenticado">
+
+</div>
+<ng-template #autenticado>
+  <app-lista-animales></app-lista-animales>
+  <br>
+  <div class="example-button-row">
+    <button mat-raised-button color="warn" (click)="loginOut()">LogOut</button>
+  </div>
+</ng-template>
+<ng-template #noautenticado>
+  <app-login></app-login>
+</ng-template>
+<!-- <app-lista-animales></app-lista-animales> -->
 <router-outlet></router-outlet>

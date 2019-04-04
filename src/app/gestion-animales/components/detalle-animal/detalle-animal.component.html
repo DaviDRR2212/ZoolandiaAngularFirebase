@@ -1,0 +1,5 @@
+<div *ngIf="animal$ | async as animal">
+  <h2>{{ animal.nombre }}</h2>
+  <p>{{ animal.bio }}</p>
+  <img [src]="getRutaAnimal(animal.imagen)"/>
+</div>>

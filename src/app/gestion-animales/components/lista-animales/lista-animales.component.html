@@ -1,0 +1,53 @@
+
+<br>
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ZooLandia
+        </mat-panel-title>  
+        <mat-panel-description>      
+        <div class="example-button-row">
+          <button mat-icon-button  [routerLink]="['/newAnimal']">
+            <mat-icon svgIcon="animal"></mat-icon>
+          </button>
+<!--           <button mat-raised-button color="primary" [routerLink]="['/newAnimal']">Ir a Añadir Nuevo Animal</button>-->        </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <table mat-table [dataSource]="animales$" class="mat-elevation-z8">
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let animal"> <a [routerLink]="['/animales', animal.payload.doc.id]">{{animal.payload.doc.data().nombre}}</a> </td>
+            </ng-container>        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </mat-expansion-panel>
+  </mat-accordion>
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Nuevo Animal
+      </mat-panel-title>
+      <mat-panel-description>
+        Introduce los datos del Nuevo Animal
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <input matInput name="id" [(ngModel)]="animal.id" placeholder="ID">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="nombre" [(ngModel)]="animal.nombre" placeholder="Nombre">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="bio" [(ngModel)]="animal.bio" placeholder="Bio">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="imagen" [(ngModel)]="animal.imagen" placeholder="Imagen">
+    </mat-form-field>
+    <div class="example-button-row">
+      <button mat-raised-button color="primary" (click)="nuevoAnimal()">Añadir Nuevo Animal</button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

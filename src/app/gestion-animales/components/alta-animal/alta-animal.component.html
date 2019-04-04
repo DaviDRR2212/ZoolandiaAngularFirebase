@@ -1,0 +1,20 @@
+<h3>Alta Animales</h3>
+<form [formGroup]="animalForm" (ngSubmit)="enviarDatos()" [hidden]="todoOk">
+  <p>
+    <input formControlName="nombre" placeholder="Nombre">
+    <span *ngIf="animalForm.controls.nombre.invalid && animalForm.controls.nombre.touched">
+      El campo es obligatorio
+    </span>
+  </p>
+  <p>
+    <input formControlName="bio" placeholder="Bio">
+    <span *ngIf="animalForm.controls.bio.invalid && animalForm.controls.bio.touched">
+      El campo es obligatorio
+    </span>
+  </p>
+  <p>
+    <input formControlName="imagen" placeholder="Imagen">
+  </p>
+  <p><input type="submit" [disabled]="animalForm.invalid">
+</form>
+<div *ngIf="todoOk">El alta se ha realizado con éxito</div>
